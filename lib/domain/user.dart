@@ -7,14 +7,17 @@ class User {
   String createdAt;
   String status;
   String email;
+  String type;
 
-  User(
-      {this.id = "a",
-      this.nickname = "Yo",
-      this.photoUrl,
-      this.createdAt,
-      this.status = "Hello World!",
-      this.email});
+  User({
+    this.id = "a",
+    this.nickname = "Yo",
+    this.photoUrl,
+    this.createdAt,
+    this.status = "Hello World!",
+    this.email,
+    this.type = 'delivery',
+  });
 
   User.fromJson(Map<String, dynamic> map) {
     this.fromJson(map);
@@ -27,6 +30,7 @@ class User {
     createdAt = map['createdAt'] ?? createdAt;
     status = map['status'] ?? status;
     email = map['email'] ?? email;
+    type = map['type'];
   }
 
   Map<String, String> toJson() {
@@ -37,6 +41,7 @@ class User {
       'createdAt': createdAt,
       'status': status,
       'email': email,
+      'type': type,
     };
   }
 }

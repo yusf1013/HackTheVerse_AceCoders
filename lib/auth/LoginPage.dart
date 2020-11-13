@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
     if (login)
       return null;
     else
-      return "Incorrect email or password!";
+      return "Incorrect email or password! $login";
   }
 
   Future<String> _signUp(LoginData data) async {
