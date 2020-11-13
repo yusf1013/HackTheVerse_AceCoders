@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "290911736935",
+    "firebase_url": "https://hackathon-e9923.firebaseio.com",
+    "project_id": "hackathon-e9923",
+    "storage_bucket": "hackathon-e9923.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290911736935:android:043ac677cc6742865cf0c2",
+        "android_client_info": {
+          "package_name": "com.acecoders.ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "290911736935-nm28ripbfusk7f6ov5rrub6cctltr234.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.acecoders.ecommerce",
+            "certificate_hash": "f76232e26cd7eea8bcfd6d1bac998008c7708269"
+          }
+        },
+        {
+          "client_id": "290911736935-l9m8f0c3fiar4noftou16j67l1pgn76s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCd1gkZreZg2Sc_2BgQ1E34luQOrJtNSKE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "290911736935-l9m8f0c3fiar4noftou16j67l1pgn76s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
