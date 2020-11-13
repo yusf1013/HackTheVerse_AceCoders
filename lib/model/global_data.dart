@@ -41,7 +41,7 @@ class GlobalDataController extends GetxController {
     return _admin.value = value;
   }
 
-  get admin {
+  Admin get admin {
     _admin.update((val) {});
     return _admin.value;
   }
@@ -54,7 +54,7 @@ class GlobalDataController extends GetxController {
     return _manager.value = value;
   }
 
-  get manager {
+  Manager get manager {
     _manager.update((val) {});
     return _manager.value;
   }
@@ -65,7 +65,7 @@ class GlobalDataController extends GetxController {
     return _delivery.value = value;
   }
 
-  get delivery {
+  Delivery get delivery {
     _delivery.update((val) {});
     return _delivery.value;
   }
