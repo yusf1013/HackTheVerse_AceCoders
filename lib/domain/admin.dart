@@ -1,15 +1,15 @@
 import 'package:ecommerce/domain/user.dart';
 
-class Admin extends User {
+class Admin {
   List<Report> reports = List();
   List<String> unNotifiedAbsence = List();
 }
 
-class Manager extends User {
+class Manager {
   List<AbsenceNotice> absenceNotices = List();
 }
 
-class Delivery extends User {
+class Delivery {
   List<DateTime> unNotifiedAbsence = List();
   List<DateTime> requestedAbsence = List();
   Location location;

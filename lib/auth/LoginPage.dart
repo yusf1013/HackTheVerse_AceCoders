@@ -1,6 +1,9 @@
 import 'dart:async';
 
+import 'package:ecommerce/delivery/home.dart';
+import 'package:ecommerce/domain/admin.dart';
 import 'package:ecommerce/home/home_page.dart';
+import 'package:ecommerce/model/global_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
@@ -62,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                 onLogin: _logIn,
                 onSignup: _signUp,
                 onSubmitAnimationCompleted: () {
-                  Get.to(HomePage());
+                  navigateToHome();
                 },
                 onRecoverPassword: _recoverPassword,
               ),
@@ -104,7 +107,7 @@ class LoginScreen extends StatelessWidget {
                             onPressed: () async {
                               bool log = await controller.googleAuth();
                               if (log) {
-                                Get.to(HomePage());
+                                navigateToHome();
                               }
                             },
                             child: Image.asset(
@@ -121,5 +124,17 @@ class LoginScreen extends StatelessWidget {
             ],
           ),
         ));
+  }
+
+  void navigateToHome() {
+    // Get.to(HomePage());
+    GlobalDataController data = Get.find();
+    if (data.currentUser.type == "admin")
+      Get.to(HomePage());
+    else if (data.currentUser.type == "manager")
+      Get.to(HomePage());
+    else if (data.currentUser.type == "delivery") Get.to(DeliveryHome());
+    print("haaag");
+    print(data.currentUser.toJson());
   }
 }
