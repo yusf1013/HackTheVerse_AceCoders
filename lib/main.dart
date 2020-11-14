@@ -1,3 +1,4 @@
+import 'package:ecommerce/kavi/qr_scanner.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/root_widget.dart';
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.red,
           accentColor: Color(0xFFFEF9EB),
         ),
-        home: LoginScreen(),
+        home: Scanner(),
         debugShowCheckedModeBanner: false,
       ),
     );
