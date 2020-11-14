@@ -12,7 +12,7 @@ class User {
   User({
     this.id = "a",
     this.nickname = "Yo",
-    this.photoUrl,
+    this.photoUrl = "https://via.placeholder.com/150",
     this.createdAt,
     this.status = "Hello World!",
     this.email,

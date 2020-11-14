@@ -7,6 +7,7 @@ List<Delivery> allUser;
 Admin thisAdmin = Admin();
 Manager thisManager = Manager();
 Delivery thisDelivery = Delivery();
+List<Product> allProducts = List();
 
 class GlobalDataController extends GetxController {
   final Rx<User> _currentUser = _thisUser.obs;
