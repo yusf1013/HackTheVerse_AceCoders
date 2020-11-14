@@ -1,6 +1,6 @@
 import 'package:ecommerce/model/global_data.dart';
 import 'package:ecommerce/model/initialize.dart';
-import 'package:ecommerce/sujon/deliveryManInfo.dart';
+import 'file:///C:/Users/Asus/AndroidStudioProjects/HackTheVerse_AceCoders/lib/sujon/admin/deliveryManInfo.dart';
 import 'package:ecommerce/sujon/report_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
