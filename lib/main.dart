@@ -1,3 +1,4 @@
+import 'package:ecommerce/kavi/qr_scanner.dart';
 import 'package:ecommerce/home/home_page.dart';
 import 'package:ecommerce/sujon/admin/admin_home_page.dart';
 import 'package:ecommerce/sujon/dp_home_page.dart';
