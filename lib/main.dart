@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.red,
           accentColor: Color(0xFFFEF9EB),
         ),
-        //home: LoginScreen(),
+        // home: LoginScreen(),
         home: AdminHomePage(),
         debugShowCheckedModeBanner: false,
       ),
