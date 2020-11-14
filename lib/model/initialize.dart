@@ -36,13 +36,13 @@ class Initialize {
     user2.user = User() ;
 
     user2.user.nickname = "Sujon" ;
-    user2.user.id = "1" ;
+    user2.user.id = "2" ;
 
     user3.user = User() ;
 
 
     user3.user.nickname = "Sujon" ;
-    user3.user.id = "1" ;
+    user3.user.id = "3" ;
 
 
 
