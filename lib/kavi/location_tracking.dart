@@ -66,7 +66,7 @@ class _LocationTrackingState extends State<LocationTracking> {
                             position: position,
                           );
                           locations.add(lastLocation);
-                          print("Shit is shit ${locations.length}");
+                          print("Position ${locations.length}");
                         });
                       }
                     },

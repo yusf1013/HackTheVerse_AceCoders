@@ -1,3 +1,4 @@
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:ecommerce/domain/admin.dart';
 import 'package:ecommerce/model/global_data.dart';
 import 'package:ecommerce/widgets/alert.dart';
@@ -12,6 +13,8 @@ class DeliveryHomePage extends StatefulWidget {
 
 class _DeliveryHomePageState extends State<DeliveryHomePage> {
   final Delivery delivery = allUser[0];
+  bool check = false;
+  DateTime _requestedLeaveDate;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +54,61 @@ class _DeliveryHomePageState extends State<DeliveryHomePage> {
               ),
             ],
           ),
-          Container(),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.symmetric(horizontal: 60.0),
+            child: FlatButton(
+              color: Colors.blue,
+              child: Text(
+                "Scan QR code",
+                /*style: TextStyle(
+                      color: Colors.black,
+                    ),*/
+              ),
+              onPressed: () async {
+                try{
+                  String scanning = await BarcodeScanner.scan();
+                  setState(() {
+                    check = true;
+                  });
+                }catch(e){
+
+                }
+                if(check){
+                  Get.snackbar("", "Success");
+                  setState(() {
+                    check = false;
+                  });
+                }
+              },
+            ),
+          ),
+          SizedBox(height: 10.0,),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.symmetric(horizontal: 60.0),
+            child: FlatButton(
+              color: Colors.blue,
+              child: Text(
+                "Request Absence",
+                /*style: TextStyle(
+                      color: Colors.black,
+                    ),*/
+              ),
+              onPressed: (){
+                showDatePicker(context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2020),
+                    lastDate: DateTime(2050)).then((date){
+                   setState(() {
+                     _requestedLeaveDate = date;
+                     print("Date: "+_requestedLeaveDate.toString());
+                   });
+                });
+              },
+            ),
+          ),
+          SizedBox(height: 10.0,),
         ],
       ),
     );
