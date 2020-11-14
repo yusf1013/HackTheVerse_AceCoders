@@ -44,6 +44,10 @@ dependencies:
   flutter_slider_drawer: ^1.0.3
   flutter_typeahead: ^1.8.8
   barcode_scan: ^2.0.1
+  #camera_with_rtmp: ^0.3.2
+  camera: ^0.5.8+11
+  fluttertoast: ^7.1.1
+  path_provider: ^1.6.24
 
 dev_dependencies:
   flutter_test:
