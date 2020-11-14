@@ -5,11 +5,13 @@ import 'package:intl/intl.dart';
 import 'package:ecommerce/model/global_data.dart';
 
 class Admin {
+  User user;
   List<Report> reports = List();
   List<String> unNotifiedAbsence = List();
 }
 
 class Manager {
+  User user;
   List<AbsenceNotice> absenceNotices = List();
   void notifyAbsent(String id) {
     var dateTime =
@@ -35,6 +37,7 @@ class Delivery {
   String videoUrl;
   List<Order> _orders = List();
   Order totalItems = Order();
+  bool done = false, reportedAbsent = false;
 
   Delivery({this.user});
 
@@ -77,7 +80,7 @@ class Report {
 }
 
 class Order {
-  String id;
+  String id, location;
   Map<String, int> products = {};
 
   Order({this.id, this.products});
@@ -85,6 +88,14 @@ class Order {
   Order.random() {
     var r = Random();
     this.id = r.nextInt(10000).toString();
+    List<String> locations = [
+      "Azimpur",
+      "Dhanmondi 15",
+      "Jhigatola",
+      "Uttara",
+      "Doel chattar"
+    ];
+    location = locations[r.nextInt(locations.length)];
 
     for (int i = 0; i < allProducts.length; i++) {
       int n = r.nextInt(3);

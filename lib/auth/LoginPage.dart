@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:ecommerce/delivery/home.dart';
 import 'package:ecommerce/domain/admin.dart';
+import 'package:ecommerce/home/delivery_person.dart';
 import 'package:ecommerce/home/home_page.dart';
 import 'package:ecommerce/model/global_data.dart';
+import 'package:ecommerce/model/initialize.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
@@ -16,11 +18,22 @@ import 'login_controller.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   Duration get loginTime => Duration(milliseconds: 2250);
 
   LogInController controller = Get.put(LogInController());
+
   FireBaseAuthManager fireAuth = FireBaseAuthManager();
+
+  initState() {
+    Initialize().initEssentials();
+    super.initState();
+  }
 
   Future<String> _logIn(LoginData data) async {
     bool login = await fireAuth.fireBaseBasicSignIn(data);
@@ -133,8 +146,7 @@ class LoginScreen extends StatelessWidget {
       Get.to(ManagerHomePage());
     else if (data.currentUser.type == "manager")
       Get.to(ManagerHomePage());
-    else if (data.currentUser.type == "delivery") Get.to(HomePage());
-    print("haaag");
+    else if (data.currentUser.type == "delivery") Get.to(DeliveryHomePage());
     print(data.currentUser.toJson());
   }
 }

@@ -13,8 +13,15 @@ class VideoController extends StatefulWidget {
 
 class _VideoControllerState extends State<VideoController> {
 
+  double latitude1=44.33328, longitude1=-94.420307, latitude2=44.33328, longitude2=-89.132008 ;
+
+  TextEditingController _latTextEditingController = TextEditingController() ;
+  TextEditingController _longTextEditingController = TextEditingController() ;
+
   CameraController controller;
   String videoPath;
+
+  //_VideoControllerState(this.latitude1, this.longitude1, this.latitude2, this.longitude2);
 
   String timestamp() => DateTime.now().millisecondsSinceEpoch.toString();
 
@@ -26,12 +33,12 @@ class _VideoControllerState extends State<VideoController> {
   @override
   void initState() {
     super.initState();
-    method(44.33328, -94.420307, 44.33328, -89.132008) ;
+    method(latitude1, longitude1, latitude2, longitude2) ;
   }
 
   void method(double lat1, double long1, double lat2, double long2 ){
     double totalDistance = 0;
-    totalDistance = calculateDistance(lat1, long1, lat2, long2);
+    totalDistance = calculateDistance();
 
     print("------------->>>" + totalDistance.toString());
 
@@ -54,16 +61,29 @@ class _VideoControllerState extends State<VideoController> {
         print('Error: $err.code\nError Message: $err.message');
       });
     }
+    else {
+      _onStopButtonPressed() ;
+    }
   }
 
-  double calculateDistance(lat1, lon1, lat2, lon2){
+  double calculateDistance(){
     var p = 0.017453292519943295;
     var c = cos;
-    var a = 0.5 - c((lat2 - lat1) * p)/2 +
-        c(lat1 * p) * c(lat2 * p) *
-            (1 - c((lon2 - lon1) * p))/2;
+    var a = 0.5 - c((latitude2 - latitude1) * p)/2 +
+        c(latitude1 * p) * c(latitude2 * p) *
+            (1 - c((longitude2 - longitude1) * p))/2;
     return 12742 * asin(sqrt(a));
   }
+
+  changeLatLong() async{
+    latitude2 = double.parse(_latTextEditingController.text.trim()) ;
+    longitude2 = double.parse(_longTextEditingController.text.trim()) ;
+
+    setState(() {
+      method(latitude1, longitude1, latitude2, longitude2) ;
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +94,37 @@ class _VideoControllerState extends State<VideoController> {
       ),
       body: Column(
         children: <Widget>[
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("("+latitude1.toString()+", " + longitude1.toString()+")"),
+                ),
+                SizedBox(width: 30,),
+                Expanded(
+                  child: TextField(
+                    controller: _latTextEditingController,
+                    decoration: InputDecoration(),
+                  ),
+                ),
+                SizedBox(width: 10,),
+                Expanded(
+                  child: TextField(
+                    controller: _longTextEditingController,
+                    decoration: InputDecoration(
+                    ),
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.arrow_drop_down),
+                  onPressed: (){changeLatLong();},
+                )
+              ],
+            ),
+          ),
           Expanded(
             child: Container(
               child: Padding(
@@ -96,7 +147,7 @@ class _VideoControllerState extends State<VideoController> {
           Padding(
             padding: const EdgeInsets.all(5.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 //_cameraTogglesRowWidget(),
                 _captureControlRowWidget(),
