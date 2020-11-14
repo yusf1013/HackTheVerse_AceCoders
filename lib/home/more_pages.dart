@@ -6,26 +6,31 @@ import 'package:get/get.dart';
 import 'package:ecommerce/model/initialize.dart';
 import 'package:ecommerce/model/global_data.dart' as data;
 
-class DpDetailPage extends StatelessWidget {
+class DpDetailPage extends StatefulWidget {
   final Delivery delivery;
 
   DpDetailPage(this.delivery);
 
   @override
+  _DpDetailPageState createState() => _DpDetailPageState();
+}
+
+class _DpDetailPageState extends State<DpDetailPage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("${delivery.user.nickname}"),
+        title: Text("${widget.delivery.user.nickname}"),
       ),
       body: Column(
         children: <Widget>[
           Expanded(
             child: ListView.builder(
-                itemCount: delivery.totalItems.products.length,
+                itemCount: widget.delivery.totalItems.products.length,
                 itemBuilder: (context, index) {
                   Product p = data.getProduct(
-                      delivery.totalItems.products.keys.toList()[index]);
-                  int num = delivery.totalItems.products[p.id];
+                      widget.delivery.totalItems.products.keys.toList()[index]);
+                  int num = widget.delivery.totalItems.products[p.id];
                   return GestureDetector(
                     onTap: () {
                       showAlert(context,
@@ -61,19 +66,33 @@ class DpDetailPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               FlatButton(
+                disabledColor: Colors.grey,
                 child: Text("Report absent"),
                 color: Colors.blueAccent,
-                onPressed: () {
-                  data.thisManager.notifyAbsent(delivery.user.id);
-                },
+                onPressed: widget.delivery.reportedAbsent ||
+                        widget.delivery.done
+                    ? null
+                    : () {
+                        data.thisManager.notifyAbsent(widget.delivery.user.id);
+                        setState(() {
+                          widget.delivery.reportedAbsent = true;
+                        });
+                      },
               ),
               SizedBox(
                 width: 20,
               ),
               FlatButton(
+                disabledColor: Colors.grey,
                 child: Text("Report Done"),
                 color: Colors.blueAccent,
-                onPressed: () {},
+                onPressed: widget.delivery.done
+                    ? null
+                    : () {
+                        setState(() {
+                          widget.delivery.done = true;
+                        });
+                      },
               ),
             ],
           ),

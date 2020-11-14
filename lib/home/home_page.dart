@@ -1,3 +1,4 @@
+import 'package:ecommerce/domain/admin.dart';
 import 'package:ecommerce/home/more_pages.dart';
 import 'package:ecommerce/model/global_data.dart' as data;
 import 'package:ecommerce/widgets/alert.dart';
@@ -31,16 +32,18 @@ class _ManagerHomePageState extends State<ManagerHomePage> {
             child: ListView.builder(
                 itemCount: data.allUser.length,
                 itemBuilder: (context, index) {
+                  Delivery delivery = data.allUser[index];
                   return GestureDetector(
                     onTap: () async {
                       await Get.to(DpDetailPage(data.allUser[index]));
                       setState(() {});
                     },
                     child: Card(
+                      color: delivery.done ? Colors.lightGreen : null,
                       child: ListTile(
-                        title: Text(data.allUser[index].user.nickname),
+                        title: Text(delivery.user.nickname),
                         subtitle: Text(
-                            "Unnotified absence: ${data.allUser[index].unNotifiedAbsence.length}"),
+                            "Unnotified absence: ${delivery.unNotifiedAbsence.length}"),
                       ),
                     ),
                   );
