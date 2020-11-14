@@ -9,6 +9,7 @@ class Scanner extends StatefulWidget {
 class _ScannerState extends State<Scanner> {
 
   String qr_result = "Not yet scanned";
+  bool check = false;
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +54,11 @@ class _ScannerState extends State<Scanner> {
                   String scanning = await BarcodeScanner.scan();
                   setState(() {
                     qr_result = scanning;
+                    check = true;
+                    Navigator.of(context).pop(check);
                   });
                 }catch(e){
-                  print(BarcodeScanner.CameraAccessDenied);
-                  print(BarcodeScanner.UserCanceled);
+
                 }
               },
               shape: RoundedRectangleBorder(
@@ -73,3 +75,4 @@ class _ScannerState extends State<Scanner> {
     );
   }
 }
+
