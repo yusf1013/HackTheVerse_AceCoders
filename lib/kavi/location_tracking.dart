@@ -8,7 +8,7 @@ class LocationTracking extends StatefulWidget {
 
 class _LocationTrackingState extends State<LocationTracking> {
   double width = 40.0, height = 40.0;
-  Offset position ;
+  Offset position;
 
   List<Location> locations = [];
   Location lastLocation;
@@ -54,16 +54,20 @@ class _LocationTrackingState extends State<LocationTracking> {
                         fontSize: 18.0,
                       ),
                     ),
-                    onPressed: () async{
-                      bool check = await Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => Scanner()));
+                    onPressed: () async {
+                      bool check = await Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => Scanner()));
 
-                      if(check) {
+                      if (check) {
                         setState(() {
-                          lastLocation = Location(position: position,);
+                          lastLocation = Location(
+                            position: position,
+                          );
                           locations.add(lastLocation);
+                          print("Shit is shit ${locations.length}");
                         });
                       }
-
                     },
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -74,7 +78,8 @@ class _LocationTrackingState extends State<LocationTracking> {
               ),
             ),
           ),
-          !locations.isEmpty?  lastLocation : Container(),
+          // locations.isNotEmpty ? locations : Container(),
+          ...locations,
           Positioned(
             left: position.dx,
             top: position.dy - height + 20,
@@ -83,23 +88,33 @@ class _LocationTrackingState extends State<LocationTracking> {
                 width: width,
                 height: height,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(width/2),
+                  borderRadius: BorderRadius.circular(width / 2),
                   color: Colors.blue,
                 ),
-                child: Center(child: Text("", style: Theme.of(context).textTheme.headline,),),
+                child: Center(
+                  child: Text(
+                    "",
+                    style: Theme.of(context).textTheme.headline,
+                  ),
+                ),
               ),
               feedback: Container(
                 child: Center(
-                  child: Text("", style: Theme.of(context).textTheme.headline,),),
+                  child: Text(
+                    "",
+                    style: Theme.of(context).textTheme.headline,
+                  ),
+                ),
                 width: width,
                 height: height,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(width/2),
+                  borderRadius: BorderRadius.circular(width / 2),
                   color: Colors.red[800],
                 ),
               ),
-              onDraggableCanceled: (Velocity velocity, Offset offset){
+              onDraggableCanceled: (Velocity velocity, Offset offset) {
                 setState(() => position = offset);
+                print(offset);
               },
             ),
           ),
@@ -110,7 +125,6 @@ class _LocationTrackingState extends State<LocationTracking> {
 }
 
 class Location extends StatelessWidget {
-
   final Offset position;
 
   Location({this.position});
@@ -127,7 +141,12 @@ class Location extends StatelessWidget {
           borderRadius: BorderRadius.circular(20.0),
           color: Colors.green,
         ),
-        child: Center(child: Text("", style: Theme.of(context).textTheme.headline,),),
+        child: Center(
+          child: Text(
+            "",
+            style: Theme.of(context).textTheme.headline,
+          ),
+        ),
       ),
     );
   }
