@@ -123,6 +123,7 @@ class _LocationTrackingState extends State<LocationTracking> {
     );
   }
 }
+//
 
 class Location extends StatelessWidget {
   final Offset position;
