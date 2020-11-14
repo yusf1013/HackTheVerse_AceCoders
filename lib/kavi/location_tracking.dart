@@ -79,6 +79,7 @@ class _LocationTrackingState extends State<LocationTracking> {
             ),
           ),
           // locations.isNotEmpty ? locations : Container(),
+          ...locations,
           Positioned(
             left: position.dx,
             top: position.dy - height + 20,
@@ -117,7 +118,6 @@ class _LocationTrackingState extends State<LocationTracking> {
               },
             ),
           ),
-          ...locations,
         ],
       ),
     );
