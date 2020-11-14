@@ -1,3 +1,4 @@
+import 'package:ecommerce/home/home_page.dart';
 import 'package:ecommerce/sujon/admin_home_page.dart';
 import 'package:ecommerce/sujon/report_list.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
           accentColor: Color(0xFFFEF9EB),
         ),
         //home: LoginScreen(),
-        home: ReportList(),
+        home: AdminHomePage(),
         debugShowCheckedModeBanner: false,
       ),
     );

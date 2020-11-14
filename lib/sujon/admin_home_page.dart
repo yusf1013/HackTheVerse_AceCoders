@@ -1,9 +1,28 @@
 import 'package:ecommerce/model/global_data.dart';
+import 'package:ecommerce/model/initialize.dart';
+import 'package:ecommerce/sujon/deliveryManInfo.dart';
+import 'package:ecommerce/sujon/report_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AdminHomePage extends StatelessWidget {
-  GlobalDataController dataController = Get.find() ;
+class AdminHomePage extends StatefulWidget {
+  @override
+  _AdminHomePageState createState() => _AdminHomePageState();
+}
+
+class _AdminHomePageState extends State<AdminHomePage> {
+  GlobalDataController dataController = Get.put(GlobalDataController()) ;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    method() ;
+  }
+
+  method() async{
+    await Initialize().initEssentials();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,70 +30,44 @@ class AdminHomePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text("Admin"),
+          actions: [
+            RaisedButton(
+              onPressed: (){
+                Get.to(ReportList()) ;
+              },
+              child: Text("Report List"),
+            )
+          ],
         ),
-        body: Center(
-          child: Column(
-            children: [
-              RaisedButton(
-                onPressed: (){},
-                child: Text("View report of product"),
-              ),
-              RaisedButton(
-                onPressed: (){},
-                child: Text("watch video clip"),
-              ),
-              RaisedButton(
-                onPressed: (){},
-                child: Text("View Realtime location of delivery man"),
-              ),
-              RaisedButton(
-                onPressed: (){},
-                child: Text("view last completed order"),
-              ),
-              RaisedButton(
-                onPressed: (){},
-                child: Text("view last location"),
-              ),
-              RaisedButton(
-                onPressed: (){},
-                child: Text("view absent rate of delivery man"),
-              ),
-              Obx(()=>ListView.builder(
-                itemBuilder: (context, index){
-                  if(dataController.allUsers[index].type.equals("delivery")){
-                    return listTile(dataController.allUsers[index].name, dataController.allUsers[index].id, dataController.allUsers[index].photoUrl) ;
-                  }
-                },
-              ),
-              )
-            ],
-          ),
+      body: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Obx(()=>ListView.builder(
+          itemCount: dataController.allUsers.length,
+          itemBuilder: (context, index){
+            //return listTile(dataController.admin.reports[index].productId, dataController.admin.reports[index].reporterId, "") ;
+            return listTile(dataController.allUsers[index].user.nickname, dataController.allUsers[index].user.id) ;
+          },
         ),
+        ),
+      ),
       ),
     );
   }
 
-  Widget listTile(String name, String id, String photoUrl){
+  Widget listTile(String name, String id){
     return InkWell(
-      onTap: (){
-
-      },
+      onTap: ()=> Get.to(DeliveryManInfo()),
       child: Card(
         child: Container(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Image.network(
-                  "imagePath",
-                  height: 50,
-                  width: 50,
-                ),
+
                 Column(
                   children: [
-                    Text(productId),
-                    Text(reporterID),
-                    Text(dateReported.toString())
+                    Text(name),
+                    Text(id),
                   ],
                 )
               ],
@@ -84,5 +77,4 @@ class AdminHomePage extends StatelessWidget {
       ),
     );
   }
-
 }
