@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
-
-class AdminHomePage extends StatelessWidget {
+/*
+class ManagerHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Admin"),
+          title: Text("Manager"),
         ),
         body: Center(
           child: Column(
             children: [
               RaisedButton(
-                onPressed: (){},
+                onPressed: () {},
                 child: Text("give attendance"),
               ),
               RaisedButton(
-                onPressed: (){},
-                child: Text("Automatically start video,streaming, DetectButton press"),
+                onPressed: () {},
+                child: Text(
+                    "Automatically start video,streaming, DetectButton press"),
               ),
               RaisedButton(
-                onPressed: (){},
+                onPressed: () {},
                 child: Text("Scan QR code for reporting new agent location."),
               ),
               RaisedButton(
-                onPressed: (){},
+                onPressed: () {},
                 child: Text("view nearby agents."),
               ),
             ],
@@ -34,3 +35,4 @@ class AdminHomePage extends StatelessWidget {
     );
   }
 }
+*/

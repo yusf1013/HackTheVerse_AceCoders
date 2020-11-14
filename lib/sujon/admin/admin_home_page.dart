@@ -1,9 +1,10 @@
 import 'package:ecommerce/model/global_data.dart';
 import 'package:ecommerce/model/initialize.dart';
-import 'file:///C:/Users/Asus/AndroidStudioProjects/HackTheVerse_AceCoders/lib/sujon/admin/deliveryManInfo.dart';
 import 'package:ecommerce/sujon/report_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'deliveryManInfo.dart';
 
 class AdminHomePage extends StatefulWidget {
   @override
@@ -11,16 +12,16 @@ class AdminHomePage extends StatefulWidget {
 }
 
 class _AdminHomePageState extends State<AdminHomePage> {
-  GlobalDataController dataController = Get.put(GlobalDataController()) ;
+  GlobalDataController dataController = Get.put(GlobalDataController());
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    method() ;
+    method();
   }
 
-  method() async{
+  method() async {
     await Initialize().initEssentials();
   }
 
@@ -32,38 +33,39 @@ class _AdminHomePageState extends State<AdminHomePage> {
           title: Text("Admin"),
           actions: [
             RaisedButton(
-              onPressed: (){
-                Get.to(ReportList()) ;
+              onPressed: () {
+                Get.to(ReportList());
               },
               child: Text("Report List"),
             )
           ],
         ),
-      body: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Obx(()=>ListView.builder(
-          itemCount: dataController.allUsers.length,
-          itemBuilder: (context, index){
-            //return listTile(dataController.admin.reports[index].productId, dataController.admin.reports[index].reporterId, "") ;
-            return listTile(dataController.allUsers[index].user.nickname, dataController.allUsers[index].user.id) ;
-          },
+        body: Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Obx(
+            () => ListView.builder(
+              itemCount: dataController.allUsers.length,
+              itemBuilder: (context, index) {
+                //return listTile(dataController.admin.reports[index].productId, dataController.admin.reports[index].reporterId, "") ;
+                return listTile(dataController.allUsers[index].user.nickname,
+                    dataController.allUsers[index].user.id);
+              },
+            ),
+          ),
         ),
-        ),
-      ),
       ),
     );
   }
 
-  Widget listTile(String name, String id){
+  Widget listTile(String name, String id) {
     return InkWell(
-      onTap: ()=> Get.to(DeliveryManInfo()),
+      onTap: () => Get.to(DeliveryManInfo()),
       child: Card(
         child: Container(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-
                 Column(
                   children: [
                     Text(name),
