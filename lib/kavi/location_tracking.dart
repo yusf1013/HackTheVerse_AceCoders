@@ -79,7 +79,6 @@ class _LocationTrackingState extends State<LocationTracking> {
             ),
           ),
           // locations.isNotEmpty ? locations : Container(),
-          ...locations,
           Positioned(
             left: position.dx,
             top: position.dy - height + 20,
@@ -118,6 +117,7 @@ class _LocationTrackingState extends State<LocationTracking> {
               },
             ),
           ),
+          ...locations,
         ],
       ),
     );
@@ -133,9 +133,9 @@ class Location extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      left: position.dx,
+      left: position.dx + 8,
       top: position.dy - 20,
-      child: Container(
+      /*child: Container(
         width: 40.0,
         height: 40.0,
         decoration: BoxDecoration(
@@ -148,7 +148,8 @@ class Location extends StatelessWidget {
             style: Theme.of(context).textTheme.headline,
           ),
         ),
-      ),
+      ),*/
+      child: Icon(Icons.location_on),
     );
   }
 }
