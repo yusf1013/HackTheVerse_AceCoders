@@ -3,7 +3,7 @@ import 'package:ecommerce/sujon/admin/deliveryManInfo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AdminHomePage extends StatelessWidget {
+class ManagerHomePage extends StatelessWidget {
 
   GlobalDataController dataController = Get.put(GlobalDataController());
 
@@ -11,7 +11,7 @@ class AdminHomePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Admin"),
+          title: Text("Manager"),
           actions: [
             RaisedButton(
               onPressed: () {
