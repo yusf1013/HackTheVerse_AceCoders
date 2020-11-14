@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         // home: LoginScreen(),
         //home: AdminHomePage(),
         //home: Scanner(),
-        home: LocationTracking(),
+        //home: LocationTracking(),
         debugShowCheckedModeBanner: false,
       ),
     );
