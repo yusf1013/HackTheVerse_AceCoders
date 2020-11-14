@@ -1,3 +1,4 @@
+import 'package:ecommerce/kavi/location_tracking.dart';
 import 'package:ecommerce/kavi/qr_scanner.dart';
 import 'package:ecommerce/home/home_page.dart';
 import 'package:ecommerce/sujon/admin_home_page.dart';
@@ -29,6 +30,8 @@ class MyApp extends StatelessWidget {
         ),
         // home: LoginScreen(),
         home: AdminHomePage(),
+        //home: Scanner(),
+        //home: LocationTracking(),
         debugShowCheckedModeBanner: false,
       ),
     );

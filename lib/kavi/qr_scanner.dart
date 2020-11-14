@@ -55,8 +55,7 @@ class _ScannerState extends State<Scanner> {
                     qr_result = scanning;
                   });
                 }catch(e){
-                  print(BarcodeScanner.CameraAccessDenied);
-                  print(BarcodeScanner.UserCanceled);
+
                 }
               },
               shape: RoundedRectangleBorder(

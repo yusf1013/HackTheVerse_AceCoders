@@ -36,13 +36,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  camera_with_rtmp:
-    dependency: "direct main"
-    description:
-      name: camera_with_rtmp
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.2"
   charcode:
     dependency: transitive
     description:
