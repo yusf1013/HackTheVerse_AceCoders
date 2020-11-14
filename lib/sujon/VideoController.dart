@@ -15,6 +15,8 @@ class _VideoControllerState extends State<VideoController> {
 
   double latitude1=44.33328, longitude1=-94.420307, latitude2=44.33328, longitude2=-89.132008 ;
 
+  bool recordVideoOnNow = false , recordVideoOnThen = false, isInit =true;
+
   TextEditingController _latTextEditingController = TextEditingController() ;
   TextEditingController _longTextEditingController = TextEditingController() ;
 
@@ -44,25 +46,44 @@ class _VideoControllerState extends State<VideoController> {
 
     if(totalDistance < 500){
       print("---------->>>>>>>GOOG") ;
-      availableCameras().then((availableCameras) {
-        cameras = availableCameras;
+      if(isInit==true){
+        availableCameras().then((availableCameras) {
+          cameras = availableCameras;
 
-        if (cameras.length > 0) {
-          setState(() {
-            selectedCameraIdx = 0;
-          });
+          if (cameras.length > 0) {
+            setState(() {
+              selectedCameraIdx = 0;
+            });
 
-          _onCameraSwitched(cameras[selectedCameraIdx]).then((void v) {
-            _onRecordButtonPressed() ;
-          });
+            _onCameraSwitched(cameras[selectedCameraIdx]).then((void v) {
+              if(recordVideoOnNow==false){
+                _onRecordButtonPressed() ;
+                recordVideoOnNow = true ;
+              }
+            });
+          }
+        })
+            .catchError((err) {
+          print('Error: $err.code\nError Message: $err.message');
+        });
+      }else{
+        if(recordVideoOnNow==false){
+          _onRecordButtonPressed() ;
+          recordVideoOnNow = true ;
         }
-      })
-          .catchError((err) {
-        print('Error: $err.code\nError Message: $err.message');
-      });
+      }
+
     }
     else {
-      _onStopButtonPressed() ;
+      if(recordVideoOnNow==true){
+        _onStopButtonPressed() ;
+        recordVideoOnNow = false ;
+      }
+    }
+
+    if(isInit == true){
+      recordVideoOnThen = recordVideoOnNow ;
+      isInit = false ;
     }
   }
 
@@ -79,11 +100,12 @@ class _VideoControllerState extends State<VideoController> {
     latitude2 = double.parse(_latTextEditingController.text.trim()) ;
     longitude2 = double.parse(_longTextEditingController.text.trim()) ;
 
-    setState(() {
-      method(latitude1, longitude1, latitude2, longitude2) ;
-    });
-  }
+    method(latitude1, longitude1, latitude2, longitude2) ;
 
+    if(recordVideoOnNow!=recordVideoOnThen){
+      recordVideoOnThen = recordVideoOnNow ;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +125,7 @@ class _VideoControllerState extends State<VideoController> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text("("+latitude1.toString()+", " + longitude1.toString()+")"),
                 ),
-                SizedBox(width: 30,),
+                SizedBox(width: 20,),
                 Expanded(
                   child: TextField(
                     controller: _latTextEditingController,
@@ -239,6 +261,8 @@ class _VideoControllerState extends State<VideoController> {
       _showCameraException(e);
       return null;
     }
+
+
 
     return filePath;
   }
