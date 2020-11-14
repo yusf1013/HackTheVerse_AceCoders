@@ -107,12 +107,13 @@ class _VideoControllerState extends State<VideoController> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        title: const Text('Camera example'),
+        title: const Text('Record Video'),
       ),
       body: Column(
         children: <Widget>[
