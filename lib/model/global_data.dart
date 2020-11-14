@@ -3,10 +3,11 @@ import 'package:ecommerce/domain/user.dart';
 import 'package:get/get.dart';
 
 User _thisUser;
-List<Delivery> allUsers;
+List<Delivery> allUser;
 Admin thisAdmin = Admin();
 Manager thisManager = Manager();
 Delivery thisDelivery = Delivery();
+List<Product> allProducts = List();
 
 class GlobalDataController extends GetxController {
   final Rx<User> _currentUser = _thisUser.obs;
@@ -22,13 +23,13 @@ class GlobalDataController extends GetxController {
 
   // All users
 
-  final _allUsers = _thisUser.obs;
+  final _allUsers = allUser.obs;
   set allUsers(value) {
     _allUsers.update((val) {});
     return _allUsers.value = value;
   }
 
-  get allUsers {
+  List<Delivery> get allUsers {
     _allUsers.update((val) {});
     return _allUsers.value;
   }
