@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:ecommerce/delivery/home.dart';
 import 'package:ecommerce/domain/admin.dart';
+import 'package:ecommerce/home/admin_page.dart';
 import 'package:ecommerce/home/delivery_person.dart';
 import 'package:ecommerce/home/home_page.dart';
 import 'package:ecommerce/model/global_data.dart';
@@ -143,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
     // Get.to(HomePage());
     GlobalDataController data = Get.find();
     if (data.currentUser.type == "admin")
-      Get.to(ManagerHomePage());
+      Get.to(AdminPage());
     else if (data.currentUser.type == "manager")
       Get.to(ManagerHomePage());
     else if (data.currentUser.type == "delivery") Get.to(DeliveryHomePage());

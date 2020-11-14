@@ -36,7 +36,7 @@ class _LocationTrackingState extends State<LocationTracking> {
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/map1.png"),
+                image: AssetImage("assets/images/map2.png"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -66,7 +66,7 @@ class _LocationTrackingState extends State<LocationTracking> {
                             position: position,
                           );
                           locations.add(lastLocation);
-                          print("Shit is shit ${locations.length}");
+                          print("Position ${locations.length}");
                         });
                       }
                     },

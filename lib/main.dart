@@ -1,3 +1,4 @@
+import 'package:ecommerce/home/admin_page.dart';
 import 'package:ecommerce/kavi/location_tracking.dart';
 import 'package:ecommerce/kavi/qr_scanner.dart';
 import 'package:ecommerce/home/home_page.dart';
@@ -26,12 +27,11 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.red,
           accentColor: Color(0xFFFEF9EB),
         ),
-        home: LoginScreen(),
+        //home: AdminPage(),
+        //home: LoginScreen(),
         // home: HomePage(),
-        // home: LoginScreen(),
-        //home: AdminHomePage(),
         //home: Scanner(),
-        //home: LocationTracking(),
+        home: LocationTracking(),
         debugShowCheckedModeBanner: false,
       ),
     );
