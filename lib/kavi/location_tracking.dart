@@ -8,6 +8,7 @@ class LocationTracking extends StatefulWidget {
 
 class _LocationTrackingState extends State<LocationTracking> {
   double width = 40.0, height = 40.0;
+  //double width = 100, height = 100;
   Offset position;
 
   List<Location> locations = [];
@@ -35,7 +36,7 @@ class _LocationTrackingState extends State<LocationTracking> {
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/dhaka_map.jpg"),
+                image: AssetImage("assets/images/map1.png"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -92,18 +93,16 @@ class _LocationTrackingState extends State<LocationTracking> {
                   color: Colors.blue,
                 ),
                 child: Center(
-                  child: Text(
-                    "",
-                    style: Theme.of(context).textTheme.headline,
-                  ),
+                  child: Container(
+
+                  )
                 ),
               ),
               feedback: Container(
                 child: Center(
-                  child: Text(
-                    "",
-                    style: Theme.of(context).textTheme.headline,
-                  ),
+                  child: Container(
+
+                  )
                 ),
                 width: width,
                 height: height,
@@ -113,7 +112,7 @@ class _LocationTrackingState extends State<LocationTracking> {
                 ),
               ),
               onDraggableCanceled: (Velocity velocity, Offset offset) {
-                setState(() => position = offset);
+                setState(() => position = Offset(offset.dx, offset.dy - 55));
                 print(offset);
               },
             ),

@@ -113,7 +113,6 @@ class FireBaseAuthManager {
         await Firestore.instance.collection("users").document(user.uid).get();
     globalDataController.currentUser.fromJson(u.data);
     // await initUser(globalDataController.currentUser);
-    await Initialize().initEssentials();
   }
 
   void signOut() async {
