@@ -1,3 +1,4 @@
+import 'package:ecommerce/kavi/qr_scanner.dart';
 import 'package:flutter/material.dart';
 
 class LocationTracking extends StatefulWidget {
@@ -6,8 +7,11 @@ class LocationTracking extends StatefulWidget {
 }
 
 class _LocationTrackingState extends State<LocationTracking> {
-  double width = 100.0, height = 100.0;
+  double width = 40.0, height = 40.0;
   Offset position ;
+
+  List<Location> locations = [];
+  Location lastLocation;
 
   @override
   void initState() {
@@ -26,6 +30,51 @@ class _LocationTrackingState extends State<LocationTracking> {
       ),
       body: Stack(
         children: <Widget>[
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/dhaka_map.jpg"),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  FlatButton(
+                    padding: EdgeInsets.all(15.0),
+                    child: Text(
+                      "Report",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 18.0,
+                      ),
+                    ),
+                    onPressed: () async{
+                      bool check = await Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => Scanner()));
+
+                      if(check) {
+                        setState(() {
+                          lastLocation = Location(position: position,);
+                          locations.add(lastLocation);
+                        });
+                      }
+
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    color: Colors.red,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          !locations.isEmpty?  lastLocation : Container(),
           Positioned(
             left: position.dx,
             top: position.dy - height + 20,
@@ -37,11 +86,11 @@ class _LocationTrackingState extends State<LocationTracking> {
                   borderRadius: BorderRadius.circular(width/2),
                   color: Colors.blue,
                 ),
-                child: Center(child: Text("Drag", style: Theme.of(context).textTheme.headline,),),
+                child: Center(child: Text("", style: Theme.of(context).textTheme.headline,),),
               ),
               feedback: Container(
                 child: Center(
-                  child: Text("Drag", style: Theme.of(context).textTheme.headline,),),
+                  child: Text("", style: Theme.of(context).textTheme.headline,),),
                 width: width,
                 height: height,
                 decoration: BoxDecoration(
@@ -55,6 +104,30 @@ class _LocationTrackingState extends State<LocationTracking> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class Location extends StatelessWidget {
+
+  final Offset position;
+
+  Location({this.position});
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      left: position.dx,
+      top: position.dy - 20,
+      child: Container(
+        width: 40.0,
+        height: 40.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+          color: Colors.green,
+        ),
+        child: Center(child: Text("", style: Theme.of(context).textTheme.headline,),),
       ),
     );
   }
