@@ -1,12 +1,28 @@
+import 'package:ecommerce/model/initialize.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../model/global_data.dart';
 
-class ReportList extends StatelessWidget {
-  GlobalDataController controller = Get.find() ;
-  int reportListLength = 5 ;
-  String imagePath = "" ;
+class ReportList extends StatefulWidget {
+  @override
+  _ReportListState createState() => _ReportListState();
+}
+
+class _ReportListState extends State<ReportList> {
+  GlobalDataController controller = Get.put(GlobalDataController()) ;
+
+  @override
+  void initState(){
+    // TODO: implement initState
+    super.initState() ;
+    method() ;
+  }
+
+  method() async{
+    await Initialize().initEssentials();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -15,10 +31,9 @@ class ReportList extends StatelessWidget {
         body: Padding(
           padding: EdgeInsets.all(8.0),
           child: Obx(()=>ListView.builder(
-              itemCount: controller.admin.report.length,
+              itemCount: controller.admin.reports.length,
               itemBuilder: (context, index){
-                return listTile(controller.admin.report[index].productId, controller.admin.report[index].reporterId
-                    , controller.admin.report[index].dateReported) ;
+                return listTile(controller.admin.reports[index].productId, controller.admin.reports[index].reporterId, controller.admin.reports[index].dateReported) ;
               },
             ),
           ),
@@ -27,7 +42,7 @@ class ReportList extends StatelessWidget {
     );
   }
 
-   Widget listTile(String productId, String reporterID, String dateReported){
+   Widget listTile(String productId, String reporterID, DateTime dateReported){
     return Card(
       child: Container(
         child: Padding(
@@ -35,7 +50,7 @@ class ReportList extends StatelessWidget {
           child: Row(
             children: [
               Image.network(
-                imagePath,
+                "imagePath",
                 height: 50,
                 width: 50,
               ),
@@ -43,7 +58,7 @@ class ReportList extends StatelessWidget {
                 children: [
                   Text(productId),
                   Text(reporterID),
-                  Text(dateReported)
+                  Text(dateReported.toString())
                 ],
               )
             ],
