@@ -25,14 +25,15 @@ class _AdminPageState extends State<AdminPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //backgroundColor: Colors.red,
         title: Text(
           "Admin Panel",
         ),
         actions: [
           IconButton(
             icon: Icon(Icons.report),
-            onPressed: (){},
+            onPressed: (){
+              // Please add report.dart file, which was deleted from sujon package.
+            },
           )
         ],
       ),
@@ -65,7 +66,7 @@ class _AdminPageState extends State<AdminPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(name, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+                      Text(name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                       Text("Absent Rate: " + ((index+1)*10).toString() + "%" ),
                     ],
                   ),
@@ -83,7 +84,7 @@ class _AdminPageState extends State<AdminPage> {
         child: Container(
           padding: EdgeInsets.all(8.0),
           decoration: BoxDecoration(
-            color: Colors.red ,
+            color: Colors.orange ,
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -93,7 +94,7 @@ class _AdminPageState extends State<AdminPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(name, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+                    Text(name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                     Text("Absent"),
                   ],
                 ),
@@ -128,15 +129,16 @@ class _PageViewState extends State<PageView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                SizedBox(height: 40,),
                 InkWell(
                   onTap: (){},
                   child: CircleAvatar(
                     radius: MediaQuery.of(context).size.width*0.15,
                     backgroundColor: Colors.white,
-                    child: Icon(Icons.add_photo_alternate, size: MediaQuery.of(context).size.width*0.15, color: Colors.grey,) ,
+                    child: Icon(Icons.nature_people_sharp, size: MediaQuery.of(context).size.width*0.15, color: Colors.green,) ,
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(height: 40,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -148,10 +150,10 @@ class _PageViewState extends State<PageView> {
                           child: Center(
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.green
+                                color: Colors.blue
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(16.0),
                                 child: Text("Watch Video", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                               ),
                             ),
@@ -169,7 +171,7 @@ class _PageViewState extends State<PageView> {
                           child: Center(
                             child: Container(
                               decoration: BoxDecoration(
-
+                                color: Colors.blue
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(16.0),
