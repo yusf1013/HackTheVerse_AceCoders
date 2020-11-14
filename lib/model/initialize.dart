@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class Initialize {
-  GlobalDataController data = Get.put(GlobalDataController());
+  // GlobalDataController data = Get.put(GlobalDataController());
 
   void initEssentials() async {
     // await initUser();
@@ -13,19 +13,19 @@ class Initialize {
     Report report = Report();
     report.productId = "Abc";
     report.dateReported = DateTime.now();
-    report.reporterId = "sujon";
+    //report.reporterId = "sujon";
     reportList.add(report);
 
     Report report2 = Report();
     report2.productId = "Abc";
     report2.dateReported = DateTime.now();
-    report2.reporterId = "sujon";
+    //report2.reporterId = "sujon";
     reportList.add(report2);
 
-    data.admin.reports = reportList;
+    // ad.reports = reportList;
 
-    data.allUsers = loadDelivery();
-    initProducts();
+    allUser = loadDelivery();
+    // initProducts();
   }
 
   List<Delivery> loadDelivery() {
@@ -39,17 +39,16 @@ class Initialize {
     user1.user.id = "1";
     user1.unNotifiedAbsence.add(DateFormat('d/M/yyyy').parse("12/11/2020"));
     user1.unNotifiedAbsence.add(DateFormat('d/M/yyyy').parse("27/08/2020"));
-    /*user1.addOrder(Order(id: "1", products: {'1': 4, '2': 1, '4': 2}));
-    user1.addOrder(Order(id: "2", products: {'3': 1, '4': 1}));
-    user1.addOrder(Order(id: "3", products: {'1': 2, '2': 2}));
-    user1.addOrder(Order(id: "4", products: {'2': 10, '3': 1, '4': 2}));
-    user1.addOrder(Order(id: "5", products: {'1': 4, '2': 1}));*/
-    for (int i = 0; i < 7; i++) user1.addOrder(Order.random());
+    for (int i = 0; i < 7; i++) {
+      print(("Should have worked"));
+      user1.addOrder(Order.random());
+    }
+    userList.add(user1);
 
     user2.user = User();
     user2.user.nickname = "Yusuf Ahmed";
     user2.user.id = "2";
-    user1.unNotifiedAbsence.add(DateFormat('d/M/yyyy').parse("17/11/2020"));
+    user2.unNotifiedAbsence.add(DateFormat('d/M/yyyy').parse("17/11/2020"));
     for (int i = 0; i < 5; i++) user2.addOrder(Order.random());
 
     user3.user = User();
@@ -57,12 +56,11 @@ class Initialize {
     user3.user.id = "3";
     for (int i = 0; i < 3; i++) user3.addOrder(Order.random());
 
-    userList.add(user1);
     userList.add(user2);
     userList.add(user3);
     return userList;
   }
-
+/*
   void initProducts() {
     allProducts = <Product>[
       Product(name: "Toothbrush", id: "1", cost: 25),
@@ -71,5 +69,5 @@ class Initialize {
       Product(name: "Shampoo", id: "4", cost: 320),
       Product(name: "Face wash", id: "5", cost: 450),
     ];
-  }
+  }*/
 }

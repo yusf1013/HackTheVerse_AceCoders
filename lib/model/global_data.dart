@@ -3,11 +3,17 @@ import 'package:ecommerce/domain/user.dart';
 import 'package:get/get.dart';
 
 User _thisUser;
-List<Delivery> allUser;
+List<Delivery> allUser = List();
 Admin thisAdmin = Admin();
 Manager thisManager = Manager();
 Delivery thisDelivery = Delivery();
-List<Product> allProducts = List();
+List<Product> allProducts = <Product>[
+  Product(name: "Toothbrush", id: "1", cost: 25),
+  Product(name: "Soap", id: "2", cost: 40),
+  Product(name: "Hand sanitizer", id: "3", cost: 120),
+  Product(name: "Shampoo", id: "4", cost: 320),
+  Product(name: "Face wash", id: "5", cost: 450),
+];
 
 class GlobalDataController extends GetxController {
   final Rx<User> _currentUser = _thisUser.obs;
@@ -70,4 +76,9 @@ class GlobalDataController extends GetxController {
     _delivery.update((val) {});
     return _delivery.value;
   }
+}
+
+Product getProduct(String id) {
+  for (Product p in allProducts) if (p.id == id) return p;
+  return null;
 }

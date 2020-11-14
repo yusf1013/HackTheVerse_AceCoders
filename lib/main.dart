@@ -1,9 +1,10 @@
+import 'package:ecommerce/kavi/location_tracking.dart';
 import 'package:ecommerce/kavi/qr_scanner.dart';
 import 'package:ecommerce/home/home_page.dart';
 import 'package:ecommerce/sujon/admin/admin_home_page.dart';
 import 'package:ecommerce/sujon/dp_home_page.dart';
 import 'package:ecommerce/sujon/manager/manager_home_page.dart';
-import 'file:///C:/Users/Asus/AndroidStudioProjects/HackTheVerse_AceCoders/lib/sujon/admin/admin_home_page.dart';
+import 'package:ecommerce/sujon/admin/admin_home_page.dart';
 import 'package:ecommerce/sujon/report_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/root_widget.dart';
@@ -31,7 +32,11 @@ class MyApp extends StatelessWidget {
           accentColor: Color(0xFFFEF9EB),
         ),
         // home: LoginScreen(),
-        home: AdminHomePage(),
+        // home: HomePage(),
+        // home: LoginScreen(),
+        //home: AdminHomePage(),
+        //home: Scanner(),
+        home: LocationTracking(),
         debugShowCheckedModeBanner: false,
       ),
     );
