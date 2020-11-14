@@ -10,12 +10,15 @@ class Manager {
 }
 
 class Delivery {
+  User user;
   List<DateTime> unNotifiedAbsence = List();
   List<DateTime> requestedAbsence = List();
   Location location;
   String videoUrl;
   List<Order> orders = List();
   Order totalItems = Order();
+
+  Delivery({this.user});
 }
 
 class Location {

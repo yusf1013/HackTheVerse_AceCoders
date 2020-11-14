@@ -3,7 +3,7 @@ import 'package:ecommerce/domain/user.dart';
 import 'package:get/get.dart';
 
 User _thisUser;
-Map<String, User> allUsers;
+List<Delivery> allUsers;
 Admin thisAdmin = Admin();
 Manager thisManager = Manager();
 Delivery thisDelivery = Delivery();
