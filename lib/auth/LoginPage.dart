@@ -130,10 +130,10 @@ class LoginScreen extends StatelessWidget {
     // Get.to(HomePage());
     GlobalDataController data = Get.find();
     if (data.currentUser.type == "admin")
-      Get.to(HomePage());
+      Get.to(ManagerHomePage());
     else if (data.currentUser.type == "manager")
-      Get.to(HomePage());
-    else if (data.currentUser.type == "delivery") Get.to(DeliveryHome());
+      Get.to(ManagerHomePage());
+    else if (data.currentUser.type == "delivery") Get.to(HomePage());
     print("haaag");
     print(data.currentUser.toJson());
   }

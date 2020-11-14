@@ -10,16 +10,16 @@ class ReportList extends StatefulWidget {
 }
 
 class _ReportListState extends State<ReportList> {
-  GlobalDataController controller = Get.put(GlobalDataController()) ;
+  GlobalDataController controller = Get.put(GlobalDataController());
 
   @override
-  void initState(){
+  void initState() {
     // TODO: implement initState
-    super.initState() ;
-    method() ;
+    super.initState();
+    method();
   }
 
-  method() async{
+  method() async {
     await Initialize().initEssentials();
   }
 
@@ -27,13 +27,19 @@ class _ReportListState extends State<ReportList> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text("ReportList"),),
+        appBar: AppBar(
+          title: Text("ReportList"),
+        ),
         body: Padding(
           padding: EdgeInsets.all(8.0),
-          child: Obx(()=>ListView.builder(
+          child: Obx(
+            () => ListView.builder(
               itemCount: controller.admin.reports.length,
-              itemBuilder: (context, index){
-                return listTile(controller.admin.reports[index].productId, controller.admin.reports[index].reporterId, controller.admin.reports[index].dateReported) ;
+              itemBuilder: (context, index) {
+                return listTile(
+                    controller.admin.reports[index].productId,
+                    controller.admin.reports[index].user.id,
+                    controller.admin.reports[index].dateReported);
               },
             ),
           ),
@@ -42,7 +48,7 @@ class _ReportListState extends State<ReportList> {
     );
   }
 
-   Widget listTile(String productId, String reporterID, DateTime dateReported){
+  Widget listTile(String productId, String reporterID, DateTime dateReported) {
     return Card(
       child: Container(
         child: Padding(
@@ -68,5 +74,3 @@ class _ReportListState extends State<ReportList> {
     );
   }
 }
-
-

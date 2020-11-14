@@ -32,6 +32,8 @@ class MyApp extends StatelessWidget {
           accentColor: Color(0xFFFEF9EB),
         ),
         // home: LoginScreen(),
+        // home: HomePage(),
+        // home: LoginScreen(),
         //home: AdminHomePage(),
         //home: Scanner(),
         home: LocationTracking(),
